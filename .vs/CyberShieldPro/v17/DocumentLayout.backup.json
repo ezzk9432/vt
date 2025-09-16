@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\vt\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E880A62-7C7E-4736-9E25-4B3F8A6C7E9F}|CyberShieldPro\\CyberShieldPro.csproj|c:\\users\\administrator\\desktop\\vt\\cybershieldpro\\models\\engineresultitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E880A62-7C7E-4736-9E25-4B3F8A6C7E9F}|CyberShieldPro\\CyberShieldPro.csproj|solutionrelative:cybershieldpro\\models\\engineresultitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E880A62-7C7E-4736-9E25-4B3F8A6C7E9F}|CyberShieldPro\\CyberShieldPro.csproj|c:\\users\\administrator\\desktop\\vt\\cybershieldpro\\services\\virustotalclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E880A62-7C7E-4736-9E25-4B3F8A6C7E9F}|CyberShieldPro\\CyberShieldPro.csproj|solutionrelative:cybershieldpro\\services\\virustotalclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VirusTotalClient.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\vt\\CyberShieldPro\\Services\\VirusTotalClient.cs",
+              "RelativeDocumentMoniker": "CyberShieldPro\\Services\\VirusTotalClient.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\vt\\CyberShieldPro\\Services\\VirusTotalClient.cs",
+              "RelativeToolTip": "CyberShieldPro\\Services\\VirusTotalClient.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAFQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T22:00:06.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EngineResultItem.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\vt\\CyberShieldPro\\Models\\EngineResultItem.cs",
+              "RelativeDocumentMoniker": "CyberShieldPro\\Models\\EngineResultItem.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\vt\\CyberShieldPro\\Models\\EngineResultItem.cs",
+              "RelativeToolTip": "CyberShieldPro\\Models\\EngineResultItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T22:00:02.096Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

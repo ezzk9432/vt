@@ -1,0 +1,417 @@
+
+<Window x:Class="Antivruis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CyberShield Pro" Height="700" Width="1200"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Modern Color Palette -->
+        <SolidColorBrush x:Key="PrimaryBackground" Color="#0A0A0F"/>
+        <SolidColorBrush x:Key="SecondaryBackground" Color="#151520"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#00D4FF"/>
+        <SolidColorBrush x:Key="SecondaryAccent" Color="#7C3AED"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#A0A0B0"/>
+        <SolidColorBrush x:Key="SuccessColor" Color="#00FF88"/>
+        <SolidColorBrush x:Key="WarningColor" Color="#FFB800"/>
+        <SolidColorBrush x:Key="DangerColor" Color="#FF4757"/>
+
+        <!-- Glow Effect -->
+        <DropShadowEffect x:Key="GlowEffect" Color="#00D4FF" BlurRadius="15" ShadowDepth="0" Opacity="0.6"/>
+        <DropShadowEffect x:Key="CardShadow" Color="Black" BlurRadius="20" ShadowDepth="5" Opacity="0.3"/>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="ButtonBorder" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"
+                                            Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Effect" Value="{StaticResource GlowEffect}"/>
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#33D4FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#0099CC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SecondaryBackground}"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Effect" Value="{StaticResource CardShadow}"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <!-- Progress Bar Style -->
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="Background" Value="#2A2A35"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4">
+                            <Rectangle Name="PART_Track" Fill="{TemplateBinding Foreground}" 
+                                     RadiusX="4" RadiusY="4"
+                                     HorizontalAlignment="Left"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    
+        <!-- Chip Badge -->
+        
+        <!-- Chip Badge -->
+        
+        <!-- Chip Badge -->
+        <Style x:Key="ChipBadge" TargetType="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="0,0,8,8"/>
+            <Setter Property="Background" Value="#1E1E2A"/>
+        </Style>
+
+
+    </Window.Resources>
+
+    <!-- Main Container -->
+    <Border Background="{StaticResource PrimaryBackground}" 
+            CornerRadius="15"
+            Effect="{StaticResource CardShadow}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar -->
+            <Border Grid.Row="0" 
+                    Background="{StaticResource SecondaryBackground}"
+                    CornerRadius="15,15,0,0"
+                    MouseDown="TitleBar_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center" 
+                                Margin="20,0">
+                        <!-- App Icon -->
+                        <Ellipse Width="32" Height="32" 
+                                Fill="{StaticResource AccentColor}"
+                                Effect="{StaticResource GlowEffect}"/>
+                        <TextBlock Text="CyberShield Pro" 
+                                  FontSize="18" 
+                                  FontWeight="Bold"
+                                  Foreground="{StaticResource TextPrimary}"
+                                  VerticalAlignment="Center"
+                                  Margin="15,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- Window Controls -->
+                    <StackPanel Grid.Column="1" 
+                                Orientation="Horizontal" 
+                                Margin="0,0,15,0">
+                        <Button Content="─" Width="40" Height="30" 
+                                Background="Transparent" 
+                                Click="Minimize_Click"
+                                Foreground="{StaticResource TextSecondary}"
+                                BorderThickness="0"/>
+                        <Button Content="□" Width="40" Height="30" 
+                                Background="Transparent" 
+                                Click="Maximize_Click"
+                                Foreground="{StaticResource TextSecondary}"
+                                BorderThickness="0"/>
+                        <Button Content="✕" Width="40" Height="30" 
+                                Background="Transparent" 
+                                Click="Close_Click"
+                                Foreground="{StaticResource DangerColor}"
+                                BorderThickness="0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content -->
+            <ScrollViewer Grid.Row="1" Margin="30" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Status Section -->
+                <Border Grid.Row="0" Style="{StaticResource Card}" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Text="System Status" 
+                                      FontSize="24" 
+                                      FontWeight="Bold"
+                                      Foreground="{StaticResource TextPrimary}"
+                                      Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="16" Height="16" 
+                                        Fill="{StaticResource SuccessColor}"
+                                        Effect="{StaticResource GlowEffect}"/>
+                                <TextBlock x:Name="StatusText" Text="PROTECTED" 
+                                          FontSize="16" 
+                                          FontWeight="SemiBold"
+                                          Foreground="{StaticResource SuccessColor}"
+                                          VerticalAlignment="Center"
+                                          Margin="10,0,0,0"/>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LastScanText" Text="Last action: —" 
+                                      FontSize="12"
+                                      Foreground="{StaticResource TextSecondary}"
+                                      Margin="0,10,0,0"/>
+                        </StackPanel>
+
+                        <!-- Shield Icon Area -->
+                        <Grid Grid.Column="1" Width="120" Height="120">
+                            <Ellipse Fill="Transparent" 
+                                    Stroke="{StaticResource AccentColor}" 
+                                    StrokeThickness="3"
+                                    Effect="{StaticResource GlowEffect}"/>
+                            <TextBlock Text="🛡️" 
+                                      FontSize="48" 
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- Main Dashboard -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Panel - Scan Options -->
+                    <StackPanel Grid.Column="0">
+                        <!-- Quick Actions -->
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="VirusTotal Actions" 
+                                          FontSize="18" 
+                                          FontWeight="SemiBold"
+                                          Foreground="{StaticResource TextPrimary}"
+                                          Margin="0,0,0,15"/>
+
+                                <UniformGrid Rows="3" Columns="2" HorizontalAlignment="Stretch">
+                                    <Button Content="Upload File &amp; Scan" Style="{StaticResource ModernButton}" Margin="0,0,10,10" Click="UploadFile_Click"/>
+                                    <Button Content="File Report by Hash" Style="{StaticResource ModernButton}" Background="{StaticResource SecondaryAccent}" Margin="10,0,0,10" Click="FileReportByHash_Click"/>
+                                    <Button Content="Scan URL" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="0,10,10,0" Click="ScanUrl_Click"/>
+                                    <Button Content="Get URL Report" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,10,0,0" Click="UrlReport_Click"/>
+                                    <Button Content="Domain Report" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="0,10,10,0" Click="DomainReport_Click"/>
+                                    <Button Content="IP Report" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,10,0,0" Click="IpReport_Click"/>
+                                </UniformGrid>
+
+                                <StackPanel Margin="0,10,0,0">
+                                    <TextBox x:Name="InputText" Height="36" Padding="8" Background="#1E1E2A" Foreground="{StaticResource TextPrimary}" BorderThickness="0" 
+                                             ToolTip="Enter hash / URL / domain / IP here"/>
+                                    <TextBlock Text="Tip: leave empty when uploading a file." FontSize="11" Foreground="{StaticResource TextSecondary}" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Scan Progress / Output -->
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Operation Progress" Grid.Column="0" 
+                                              FontSize="18" 
+                                              FontWeight="SemiBold"
+                                              Foreground="{StaticResource TextPrimary}"/>
+                                    <TextBlock x:Name="ProgressPercentText" Text="0%" FontSize="18" FontWeight="Bold" Foreground="{StaticResource AccentColor}" HorizontalAlignment="Right"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+                                        <Button Content="Copy" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,0,0,0" Click="CopyOutput_Click"/>
+                                        <Button Content="Clear" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,0,0,0" Click="ClearOutput_Click"/>
+                                        <Button Content="Save JSON" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,0,0,0" Click="SaveJson_Click"/>
+                                        <Button Content="Save CSV" Style="{StaticResource ModernButton}" Background="#4A5568" Margin="10,0,0,0" Click="SaveCsv_Click"/>
+                                        <Button Content="Open in VT" Style="{StaticResource ModernButton}" Background="{StaticResource SecondaryAccent}" Margin="10,0,0,0" Click="OpenInVT_Click"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <ProgressBar x:Name="MainProgress" Style="{StaticResource ModernProgressBar}" Value="0" Maximum="100" Margin="0,0,0,10"/>
+
+                                <TextBlock x:Name="ProgressDetail" Text="Idle…" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+
+                                <Border Margin="0,10,0,0" Background="#10101A" CornerRadius="8" Padding="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Summary" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" />
+                                        <TextBlock x:Name="SummaryText" Text="—" FontSize="12" Foreground="{StaticResource TextSecondary}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+
+                                
+                                <!-- Modern Results Tabs -->
+                                <TabControl Margin="0,10,0,0" Background="#0F0F16" BorderBrush="{x:Null}">
+                                    <TabItem Header="Overview">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="10">
+                                                <Border Background="#10101A" CornerRadius="10" Padding="12" Margin="0,0,0,10">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                                            <Ellipse Width="10" Height="10" Fill="{StaticResource SuccessColor}" x:Name="VerdictDot"/>
+                                                            <TextBlock x:Name="VerdictText" Text="No data yet" Foreground="{StaticResource TextPrimary}" FontSize="16" FontWeight="SemiBold" Margin="8,0,0,0"/>
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                            <Border Style="{StaticResource ChipBadge}" Background="#132318"><TextBlock x:Name="BadgeHarmless" Text="Harmless: 0"/></Border>
+                                                            <Border Style="{StaticResource ChipBadge}" Background="#132033"><TextBlock x:Name="BadgeUndetected" Text="Undetected: 0"/></Border>
+                                                            <Border Style="{StaticResource ChipBadge}" Background="#332b00"><TextBlock x:Name="BadgeSuspicious" Text="Suspicious: 0"/></Border>
+                                                            <Border Style="{StaticResource ChipBadge}" Background="#331515"><TextBlock x:Name="BadgeMalicious" Text="Malicious: 0"/></Border>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                                    <TextBlock Text="Object:" Foreground="{StaticResource TextSecondary}" Margin="0,0,8,0"/>
+                                                    <TextBlock x:Name="ObjectLine" Text="—" Foreground="{StaticResource TextPrimary}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="When:" Foreground="{StaticResource TextSecondary}" Margin="0,0,8,0"/>
+                                                    <TextBlock x:Name="WhenLine" Text="—" Foreground="{StaticResource TextPrimary}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </TabItem>
+                                    <TabItem Header="Engines">
+                                        <StackPanel Margin="10">
+                                            <DockPanel Margin="0,0,0,8">
+                                                <ComboBox x:Name="CategoryFilter" Width="160" Margin="0,0,8,0" SelectedIndex="0">
+                                                    <ComboBoxItem Content="All"/>
+                                                    <ComboBoxItem Content="Malicious"/>
+                                                    <ComboBoxItem Content="Suspicious"/>
+                                                    <ComboBoxItem Content="Harmless"/>
+                                                    <ComboBoxItem Content="Undetected"/>
+                                                </ComboBox>
+                                                <TextBox x:Name="SearchBox" Width="220" Padding="8" Background="#1E1E2A" Foreground="{StaticResource TextPrimary}" BorderThickness="0" 
+                                                         DockPanel.Dock="Right" ToolTip="Search engine name or result" TextChanged="SearchBox_TextChanged"/>
+                                            </DockPanel>
+                                            <DataGrid x:Name="EnginesGrid" AutoGenerateColumns="False" HeadersVisibility="Column" IsReadOnly="True"
+                                                      Background="#0F0F16" Foreground="{StaticResource TextPrimary}" RowBackground="#0F0F16" AlternatingRowBackground="#141421"
+                                                      BorderBrush="{x:Null}" GridLinesVisibility="None">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="Engine" Binding="{Binding Engine}" Width="2*"/>
+                                                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="*"/>
+                                                    <DataGridTextColumn Header="Result" Binding="{Binding Result}" Width="2*"/>
+                                                    <DataGridTextColumn Header="Method" Binding="{Binding Method}" Width="*"/>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </StackPanel>
+                                    </TabItem>
+                                    <TabItem Header="Raw JSON">
+                                        <ScrollViewer Margin="0,10,0,0" VerticalScrollBarVisibility="Auto">
+                                            <TextBox x:Name="OutputBox" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"
+                                                     Background="#0F0F16" Foreground="{StaticResource TextPrimary}" BorderThickness="0" MinHeight="200"/>
+                                        </ScrollViewer>
+                                    </TabItem>
+                                </TabControl>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Right Panel - System Info -->
+                    <StackPanel Grid.Column="2">
+                        <!-- Real-time Protection -->
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="Rate Limits" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
+                                <TextBlock Text="Public API ~4 req/min, ~500/day." FontSize="12" Foreground="{StaticResource WarningColor}" />
+                                <TextBlock Text="Large files: use special upload URL (>32MB)." FontSize="12" Foreground="{StaticResource TextSecondary}" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- System Performance -->
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="Settings" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="API Key:" Width="80" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}"/>
+                                    <PasswordBox x:Name="ApiKeyBox" Width="280" PasswordChar="●"/>
+                                    <Button Content="Use" Margin="10,0,0,0" Style="{StaticResource ModernButton}" Click="ApplyApiKey_Click"/>
+                                </StackPanel>
+                                <TextBlock Text="(If empty, the app uses env VT_API_KEY or appsettings.json)" FontSize="11" Foreground="{StaticResource TextSecondary}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Recent Activity -->
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <TextBlock Text="Recent Activity" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,15"/>
+                                <ItemsControl x:Name="ActivityList"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Bottom Navigation -->
+                <Border Grid.Row="2" 
+                        Background="{StaticResource SecondaryBackground}"
+                        CornerRadius="10"
+                        Padding="20,15"
+                        Margin="0,20,0,0">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Dashboard" Style="{StaticResource ModernButton}" Background="{StaticResource AccentColor}" Margin="0,0,10,0"/>
+                            <Button Content="Quarantine" Style="{StaticResource ModernButton}" Background="Transparent" Foreground="{StaticResource TextSecondary}" Margin="0,0,10,0"/>
+                            <Button Content="Settings" Style="{StaticResource ModernButton}" Background="Transparent" Foreground="{StaticResource TextSecondary}" Margin="0,0,10,0"/>
+                            <Button Content="Reports" Style="{StaticResource ModernButton}" Background="Transparent" Foreground="{StaticResource TextSecondary}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Version 2.1.0" FontSize="11" Foreground="{StaticResource TextSecondary}" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <Ellipse Width="8" Height="8" Fill="{StaticResource SuccessColor}"/>
+                            <TextBlock Text="Connected" FontSize="11" Foreground="{StaticResource TextSecondary}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>
